@@ -1,13 +1,14 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/bloc/notes_bloc.dart';
 import 'package:notes/constant.dart';
 import 'package:notes/model/notes.dart';
-
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:notes/pages/home_page.dart';
 
 class NoteAddPage extends StatelessWidget {
-  const NoteAddPage({Key? key}) : super(key: key);
+  const NoteAddPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,6 @@ class NoteAddPage extends StatelessWidget {
     var _descController = TextEditingController();
     void addNotes(Notes notes) async {
       BlocProvider.of<NotesBloc>(context).add(NotesAddEvent(notes: notes));
-      // return isCreated;
     }
 
     return Scaffold(
@@ -44,7 +44,15 @@ class NoteAddPage extends StatelessWidget {
                       actions: [
                         TextButton(
                           onPressed: () {
-                            Navigator.pop(context);
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const HomePage();
+                                },
+                              ),
+                              (route) => false,
+                            );
                           },
                           child: const Text(
                             'Ok',
@@ -140,10 +148,6 @@ class NoteAddPage extends StatelessWidget {
                           ),
                           child: TextButton(
                             onPressed: () async {
-                              SharedPreferences preferences =
-                                  await SharedPreferences.getInstance();
-                              var user_id = preferences.getString('user_id');
-
                               if (_titleController.text.isNotEmpty &&
                                   _descController.text.isNotEmpty) {
                                 addNotes(
@@ -151,7 +155,6 @@ class NoteAddPage extends StatelessWidget {
                                     note_id: int.parse(DateTime.now()
                                         .millisecondsSinceEpoch
                                         .toString()),
-                                    user_id: user_id!,
                                     title: _titleController.text.toString(),
                                     desc: _descController.text.toString(),
                                   ),

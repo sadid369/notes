@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../Widgets/gridTile.dart';
 import '../bloc/notes_bloc.dart';
 import '../constant.dart';
@@ -26,18 +24,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   void getAllNotes() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    var user_id = preferences.getString('user_id');
-    // BlocProvider.of<NotesBloc>(context)
-    //     .add(NotesInitialEvent(user_id: user_id!));
-    context.read<NotesBloc>().add(NotesInitialEvent(user_id: user_id!));
+    context.read<NotesBloc>().add(NotesInitialEvent());
   }
 
   void searchNotes({required String keyword}) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    var user_id = preferences.getString('user_id');
     if (keyword.isEmpty) {
-      context.read<NotesBloc>().add(NotesInitialEvent(user_id: user_id!));
+      context.read<NotesBloc>().add(NotesInitialEvent());
     } else {
       context.read<NotesBloc>().add(NotesSearchEvent(keyword: keyword));
     }
@@ -77,7 +69,7 @@ class _HomePageState extends State<HomePage> {
                 floating: true,
                 snap: true,
                 title: !typing
-                    ? Text(
+                    ? const Text(
                         "Notes",
                         style: TextStyle(
                           color: Colors.white,

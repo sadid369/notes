@@ -1,58 +1,66 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:notes/pages/home_page.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-import 'login_page.dart';
+import '../constant.dart';
 
-class SplashPage extends StatelessWidget {
-  SplashPage({super.key});
+class SplashPage extends StatefulWidget {
+  const SplashPage({super.key});
+
+  @override
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return const HomePage();
+            },
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // title: const Text("Notes App"),
-        elevation: 0,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: Colors.white),
+        backgroundColor: Constants.backGroundColor,
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SvgPicture.asset(
+                'assets/svg/splash.svg',
+                height: 200,
+                colorFilter: const ColorFilter.mode(
+                  Colors.white,
+                  BlendMode.srcIn,
+                ),
               ),
-              child: IconButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const LoginPage();
-                      },
-                    ),
-                  );
-                },
-                icon: const Icon(Icons.logout_rounded),
+              const SizedBox(
+                height: 20,
               ),
-            ),
-          )
-        ],
-      ),
-      backgroundColor: Theme.of(context).colorScheme.primary,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Welcome 🎉",
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-            const SizedBox(height: 10),
-            Text(
-              "Notes App",
-              style: Theme.of(context).textTheme.headlineLarge,
-            ),
-          ],
-        ),
-      ),
-    );
+              const Text(
+                'Notes',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 120,
+                ),
+              )
+            ],
+          ),
+        ));
   }
 }

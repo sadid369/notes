@@ -4,12 +4,7 @@ part of 'notes_bloc.dart';
 @immutable
 abstract class NotesEvent {}
 
-class NotesInitialEvent extends NotesEvent {
-  final String user_id;
-  NotesInitialEvent({
-    required this.user_id,
-  });
-}
+class NotesInitialEvent extends NotesEvent {}
 
 // ignore: must_be_immutable
 class NotesAddEvent extends NotesEvent {
@@ -29,10 +24,9 @@ class NotesUpdateEvent extends NotesEvent {
 
 class NotesDeleteEvent extends NotesEvent {
   final int id;
-  final String user_id;
+
   NotesDeleteEvent({
     required this.id,
-    required this.user_id,
   });
 }
 

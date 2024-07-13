@@ -1,10 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first, unnecessary_string_interpolations
-import 'dart:math';
-
+// ignore_for_file: public_member_api_docs, sort_constructors_first, unnecessary_string_interpolations, file_names
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-
 import '../bloc/notes_bloc.dart';
 import '../constant.dart';
 import '../model/notes.dart';
@@ -114,7 +111,6 @@ class MyGridTile extends StatelessWidget {
                               BlocProvider.of<NotesBloc>(context)
                                   .add(NotesDeleteEvent(
                                 id: notes.note_id!,
-                                user_id: notes.user_id.toString(),
                               ));
                               Navigator.pop(context);
                             },

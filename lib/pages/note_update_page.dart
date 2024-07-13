@@ -1,9 +1,7 @@
+// ignore_for_file: prefer_final_fields
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-// ignore: unused_import
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../bloc/notes_bloc.dart';
 import '../constant.dart';
 import '../model/notes.dart';
@@ -11,9 +9,9 @@ import '../model/notes.dart';
 class NoteUpdatePage extends StatefulWidget {
   final Notes notes;
   const NoteUpdatePage({
-    Key? key,
+    super.key,
     required this.notes,
-  }) : super(key: key);
+  });
 
   @override
   State<NoteUpdatePage> createState() => _NoteUpdatePageState();
@@ -104,6 +102,7 @@ class _NoteUpdatePageState extends State<NoteUpdatePage> {
           },
           builder: (context, state) {
             return Container(
+              // ignore: prefer_const_constructors
               padding: EdgeInsets.all(25),
               child: Column(
                 children: [
