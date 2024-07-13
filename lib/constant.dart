@@ -5,7 +5,7 @@ class Constants {
   static const tabColor = Color(0xff3B3B3B);
   static const textColor = Color(0xff9F9F9F);
   static const List<Color> listColors = [
-    Color(0xffFFAB91),
+    Color.fromRGBO(255, 171, 145, 1),
     Color(0xffFFCC80),
     Color(0xffE6EE9B),
     Color(0xff80DEEA),

@@ -23,9 +23,10 @@ class MyApp extends StatelessWidget {
       title: 'Notes Bloc',
       theme: ThemeData(
         primarySwatch: Colors.grey,
+        fontFamily: 'Neucha',
       ),
-      home: SplashPage(),
-      // home: HomePage(),
+      // home: SplashPage(),
+      home: const HomePage(),
     );
   }
 }

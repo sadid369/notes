@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -8,7 +10,7 @@ import 'note_update_page.dart';
 
 class NoteDisplayPage extends StatefulWidget {
   final int index;
-  const NoteDisplayPage({Key? key, required this.index}) : super(key: key);
+  const NoteDisplayPage({super.key, required this.index});
 
   @override
   _NoteDisplayPageState createState() => _NoteDisplayPageState();
@@ -23,7 +25,7 @@ class _NoteDisplayPageState extends State<NoteDisplayPage> {
             ? Scaffold(
                 backgroundColor: Constants.backGroundColor,
                 body: Container(
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -32,7 +34,7 @@ class _NoteDisplayPageState extends State<NoteDisplayPage> {
                           top: 60,
                           bottom: 20,
                         ),
-                        height: 55,
+                        height: 70,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -42,9 +44,9 @@ class _NoteDisplayPageState extends State<NoteDisplayPage> {
                               },
                               child: Container(
                                 alignment: Alignment.center,
+                                width: 70,
                                 height: 60,
-                                width: 60,
-                                padding: EdgeInsets.all(10),
+                                padding: const EdgeInsets.only(left: 10),
                                 decoration: BoxDecoration(
                                   color: Constants.tabColor,
                                   borderRadius: BorderRadius.circular(12),
@@ -53,7 +55,7 @@ class _NoteDisplayPageState extends State<NoteDisplayPage> {
                                   child: Icon(
                                     Icons.arrow_back_ios,
                                     color: Colors.white,
-                                    size: 25,
+                                    size: 30,
                                   ),
                                 ),
                               ),
@@ -75,9 +77,10 @@ class _NoteDisplayPageState extends State<NoteDisplayPage> {
                                       },
                                     ));
                                   },
-                                  icon: Icon(
-                                    Icons.edit_note_rounded,
+                                  icon: const Icon(
+                                    Icons.edit,
                                     color: Colors.white,
+                                    size: 30,
                                   ),
                                 )),
                           ],
@@ -85,7 +88,7 @@ class _NoteDisplayPageState extends State<NoteDisplayPage> {
                       ),
                       Text(
                         state.notes[widget.index].title!,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 35,
                           color: Colors.white,
                         ),
@@ -96,10 +99,10 @@ class _NoteDisplayPageState extends State<NoteDisplayPage> {
                       Text(
                         DateFormat.yMMMMd()
                             .format(state.notes[widget.index].dateTime),
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: const TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25),
                       ),
                       const SizedBox(
                         height: 20,
@@ -115,7 +118,7 @@ class _NoteDisplayPageState extends State<NoteDisplayPage> {
                   ),
                 ),
               )
-            : Center(
+            : const Center(
                 child: CircularProgressIndicator(),
               );
       },

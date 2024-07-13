@@ -53,6 +53,7 @@ class _NoteUpdatePageState extends State<NoteUpdatePage> {
                         'Note Updated',
                         style: TextStyle(
                           color: Colors.white,
+                          fontSize: 30,
                         ),
                       ),
                       actions: [
@@ -62,9 +63,7 @@ class _NoteUpdatePageState extends State<NoteUpdatePage> {
                           },
                           child: const Text(
                             'Ok',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
+                            style: TextStyle(color: Colors.white, fontSize: 20),
                           ),
                         ),
                       ],
@@ -81,6 +80,7 @@ class _NoteUpdatePageState extends State<NoteUpdatePage> {
                         'Some Thing is Wrong',
                         style: TextStyle(
                           color: Colors.white,
+                          fontSize: 30,
                         ),
                       ),
                       actions: [
@@ -112,7 +112,7 @@ class _NoteUpdatePageState extends State<NoteUpdatePage> {
                       top: 60,
                       bottom: 20,
                     ),
-                    height: 55,
+                    height: 70,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -122,9 +122,9 @@ class _NoteUpdatePageState extends State<NoteUpdatePage> {
                           },
                           child: Container(
                             alignment: Alignment.center,
+                            width: 70,
                             height: 60,
-                            width: 60,
-                            padding: const EdgeInsets.all(10),
+                            padding: const EdgeInsets.only(left: 10),
                             decoration: BoxDecoration(
                               color: Constants.tabColor,
                               borderRadius: BorderRadius.circular(12),
@@ -133,7 +133,7 @@ class _NoteUpdatePageState extends State<NoteUpdatePage> {
                               child: Icon(
                                 Icons.arrow_back_ios,
                                 color: Colors.white,
-                                size: 25,
+                                size: 30,
                               ),
                             ),
                           ),
@@ -148,19 +148,46 @@ class _NoteUpdatePageState extends State<NoteUpdatePage> {
                             onPressed: () async {
                               if (_titleController.text.isNotEmpty &&
                                   _descController.text.isNotEmpty) {
-                                updateNotes(
-                                    // Notes(
-                                    //     title: _titleController.text.toString(),
-                                    //     desc: _descController.text.toString(),
-                                    //     note_id: widget.notes.note_id,
-                                    //     user_id: int.parse(
-                                    //       user_id!,
-                                    //     )),
-
-                                    widget.notes.copyWith(
+                                updateNotes(widget.notes.copyWith(
                                   title: _titleController.text.toString(),
                                   desc: _descController.text.toString(),
                                 ));
+                              } else {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor:
+                                          Constants.backGroundColor,
+                                      content: Text(
+                                        _titleController.text.isEmpty &&
+                                                _descController.text.isEmpty
+                                            ? 'Please Add Note Title & Description'
+                                            : _titleController.text.isEmpty
+                                                ? 'Please Add Note Title'
+                                                : "Please Add Note Description",
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text(
+                                            'Ok',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
                               }
                             },
                             child: const Text(
@@ -209,7 +236,7 @@ class _NoteUpdatePageState extends State<NoteUpdatePage> {
                       hintText: "Type Something....",
                       hintStyle: TextStyle(
                         color: Constants.textColor,
-                        fontSize: 20,
+                        fontSize: 35,
                       ),
                       border: InputBorder.none,
                     ),

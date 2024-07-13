@@ -38,6 +38,7 @@ class NoteAddPage extends StatelessWidget {
                         'Note Added',
                         style: TextStyle(
                           color: Colors.white,
+                          fontSize: 30,
                         ),
                       ),
                       actions: [
@@ -49,6 +50,7 @@ class NoteAddPage extends StatelessWidget {
                             'Ok',
                             style: TextStyle(
                               color: Colors.white,
+                              fontSize: 20,
                             ),
                           ),
                         ),
@@ -68,6 +70,7 @@ class NoteAddPage extends StatelessWidget {
                         'Some Thing Wrong',
                         style: TextStyle(
                           color: Colors.white,
+                          fontSize: 30,
                         ),
                       ),
                       actions: [
@@ -79,6 +82,7 @@ class NoteAddPage extends StatelessWidget {
                             'Ok',
                             style: TextStyle(
                               color: Colors.white,
+                              fontSize: 28,
                             ),
                           ),
                         ),
@@ -91,7 +95,7 @@ class NoteAddPage extends StatelessWidget {
           },
           builder: (context, state) {
             return Container(
-              padding: EdgeInsets.all(25),
+              padding: const EdgeInsets.all(25),
               child: Column(
                 children: [
                   Container(
@@ -99,7 +103,7 @@ class NoteAddPage extends StatelessWidget {
                       top: 60,
                       bottom: 20,
                     ),
-                    height: 55,
+                    height: 70,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -109,9 +113,9 @@ class NoteAddPage extends StatelessWidget {
                           },
                           child: Container(
                             alignment: Alignment.center,
+                            width: 70,
                             height: 60,
-                            width: 60,
-                            padding: EdgeInsets.all(10),
+                            padding: const EdgeInsets.only(left: 10),
                             decoration: BoxDecoration(
                               color: Constants.tabColor,
                               borderRadius: BorderRadius.circular(12),
@@ -120,13 +124,16 @@ class NoteAddPage extends StatelessWidget {
                               child: Icon(
                                 Icons.arrow_back_ios,
                                 color: Colors.white,
-                                size: 25,
+                                size: 30,
                               ),
                             ),
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.all(5),
+                          alignment: Alignment.center,
+                          height: 80,
+                          // ignore: prefer_const_constructors
+                          padding: EdgeInsets.only(bottom: 5),
                           decoration: BoxDecoration(
                             color: Constants.tabColor,
                             borderRadius: BorderRadius.circular(12),
@@ -165,6 +172,7 @@ class NoteAddPage extends StatelessWidget {
                                                 : "Please Add Note Description",
                                         style: const TextStyle(
                                           color: Colors.white,
+                                          fontSize: 30,
                                         ),
                                       ),
                                       actions: [
@@ -176,6 +184,7 @@ class NoteAddPage extends StatelessWidget {
                                             'Ok',
                                             style: TextStyle(
                                               color: Colors.white,
+                                              fontSize: 20,
                                             ),
                                           ),
                                         ),
@@ -187,8 +196,10 @@ class NoteAddPage extends StatelessWidget {
                             },
                             child: const Text(
                               'Save',
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.white),
+                              style: TextStyle(
+                                fontSize: 35,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
@@ -202,15 +213,15 @@ class NoteAddPage extends StatelessWidget {
                     cursorColor: Constants.textColor,
                     cursorWidth: 4,
                     style: const TextStyle(
-                      fontSize: 35,
-                      color: Constants.textColor,
+                      fontSize: 40,
+                      color: Colors.white,
                     ),
                     controller: _titleController,
                     decoration: const InputDecoration(
                       hintText: "Title",
                       hintStyle: TextStyle(
                         color: Constants.textColor,
-                        fontSize: 35,
+                        fontSize: 40,
                       ),
                       border: InputBorder.none,
                     ),
@@ -223,15 +234,15 @@ class NoteAddPage extends StatelessWidget {
                     cursorColor: Constants.textColor,
                     cursorWidth: 4,
                     style: const TextStyle(
-                      fontSize: 35,
-                      color: Constants.textColor,
+                      fontSize: 40,
+                      color: Colors.white,
                     ),
                     controller: _descController,
                     decoration: const InputDecoration(
                       hintText: "Type Something....",
                       hintStyle: TextStyle(
                         color: Constants.textColor,
-                        fontSize: 20,
+                        fontSize: 35,
                       ),
                       border: InputBorder.none,
                     ),

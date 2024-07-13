@@ -70,6 +70,17 @@ class AppDatabase {
     return notes;
   }
 
+  Future<List<Notes>> searchNotes({required String keyword}) async {
+    List<Notes>? notes;
+
+    var db = await getDB();
+    var notesList = await db.query(NOTE_TABLE,
+        where: "$NOTE_COLOUM_TITLE LIKE ?", whereArgs: ['%$keyword%']);
+
+    notes = notesList.map((e) => Notes.fromMap(e)).toList();
+    return notes;
+  }
+
   Future<Database> initDB() async {
     Directory documentDirectory = await getApplicationDocumentsDirectory();
     var dbPath = join(documentDirectory.path, "noteDB.db");

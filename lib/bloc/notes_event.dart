@@ -35,3 +35,8 @@ class NotesDeleteEvent extends NotesEvent {
     required this.user_id,
   });
 }
+
+class NotesSearchEvent extends NotesEvent {
+  final String keyword;
+  NotesSearchEvent({required this.keyword});
+}

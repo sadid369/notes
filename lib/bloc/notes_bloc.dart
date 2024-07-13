@@ -16,13 +16,13 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
     on<NotesAddEvent>(notesAddEvent);
     on<NotesUpdateEvent>(notesUpdateEvent);
     on<NotesDeleteEvent>(notesDeleteEvent);
+    on<NotesSearchEvent>(notesSearchEvent);
   }
 
   FutureOr<void> notesInitialEvent(
       NotesInitialEvent event, Emitter<NotesState> emit) async {
-    var notes = await db.fetchAllNotes(user_id: event.user_id.toString());
     emit(NotesLoadingSate());
-    await Future.delayed(const Duration(seconds: 1));
+    var notes = await db.fetchAllNotes(user_id: event.user_id.toString());
     emit(NotesLoadedSate(notes: notes));
   }
 
@@ -45,5 +45,12 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
     var isNoteDelete = await db.deleteNote(event.id);
     emit(NotesDeletedState(isNoteDeleted: isNoteDelete));
     add(NotesInitialEvent(user_id: event.user_id));
+  }
+
+  FutureOr<void> notesSearchEvent(
+      NotesSearchEvent event, Emitter<NotesState> emit) async {
+    emit(NotesLoadingSate());
+    var notes = await db.searchNotes(keyword: event.keyword);
+    emit(NotesLoadedSate(notes: notes));
   }
 }

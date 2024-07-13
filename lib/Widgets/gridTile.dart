@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, unnecessary_string_interpolations
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -15,10 +15,10 @@ class MyGridTile extends StatelessWidget {
   final int index;
 
   const MyGridTile({
-    Key? key,
+    super.key,
     required this.notes,
     required this.index,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,48 +36,42 @@ class MyGridTile extends StatelessWidget {
             height: double.infinity,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Constants
-                  .listColors[Random().nextInt(Constants.listColors.length)],
+              color: Constants.listColors[index % Constants.listColors.length],
               borderRadius: BorderRadius.circular(15),
             ),
             child: Column(
-              // mainAxisAlignment:
-              //     MainAxisAlignment.spaceAround,
               children: [
                 Container(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     top: 45,
                     left: 5,
                     right: 5,
                   ),
-                  // height: 150,
                   child: FittedBox(
                     fit: BoxFit.fitHeight,
                     child: Text(
                       overflow: TextOverflow.ellipsis,
-
                       maxLines: 4,
-                      // '''${notes[index].title.toString()}''',
                       '''${notes.title.toString()}''',
-                      style: TextStyle(
-                        letterSpacing: 2,
-                        fontSize: 25,
+                      style: const TextStyle(
+                        letterSpacing: 1,
+                        fontSize: 40,
                       ),
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 5),
                   child: Align(
-                    // alignment: Alignment.bottomLeft,
                     child: Text(
                       DateFormat.yMMMMd().format(notes.dateTime),
                       style: TextStyle(
                         color: Constants.backGroundColor.withOpacity(0.3),
-                        fontWeight: FontWeight.bold,
+                        // fontWeight: FontWeight.bold,
+                        fontSize: 25,
                       ),
                     ),
                   ),
@@ -99,6 +93,7 @@ class MyGridTile extends StatelessWidget {
                           'Delete This Note!!!!',
                           style: TextStyle(
                             color: Colors.white,
+                            fontSize: 35,
                           ),
                         ),
                         actions: [
@@ -110,6 +105,7 @@ class MyGridTile extends StatelessWidget {
                               'No',
                               style: TextStyle(
                                 color: Colors.white,
+                                fontSize: 20,
                               ),
                             ),
                           ),
@@ -126,6 +122,7 @@ class MyGridTile extends StatelessWidget {
                               'Yes',
                               style: TextStyle(
                                 color: Colors.white,
+                                fontSize: 20,
                               ),
                             ),
                           ),
@@ -135,9 +132,9 @@ class MyGridTile extends StatelessWidget {
                   );
                 },
                 icon: const Icon(
-                  Icons.delete_forever_sharp,
+                  Icons.delete_sweep_outlined,
                   color: Constants.tabColor,
-                  size: 25,
+                  size: 35,
                 )),
           ),
         ],
